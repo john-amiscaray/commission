@@ -10,5 +10,5 @@ class CommissionBackendApplication
 
 fun main(args: Array<String>) {
     runApplication<CommissionBackendApplication>(*args)
-
+    println("----- Send Help! -----")
 }

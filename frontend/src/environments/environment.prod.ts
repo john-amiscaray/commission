@@ -2,9 +2,9 @@ import {EnvironmentVariables} from "./environment-variables";
 
 export const environment: EnvironmentVariables = {
   production: true,
-  backEndUrl: "https://secret-temple-05728.herokuapp.com/",
-  apiUrl: "https://secret-temple-05728.herokuapp.com/api",
-  sockJSEndpoint: "https://secret-temple-05728.herokuapp.com/api/stomp",
+  backEndUrl: "https://commission-backend.herokuapp.com/",
+  apiUrl: "https://commission-backend.herokuapp.com/api",
+  sockJSEndpoint: "https://commission-backend.herokuapp.com/api/stomp",
   getLobbyStatusSendEndpoint: (gameCode: string) => {return `/game/lobby/${gameCode}`},
   getLobbyStatusReceiveEndpoint: (gameCode: string) => {return `/game-status/lobby/${gameCode}`},
   serverSocketErrorMessages: {
