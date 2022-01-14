@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { i as initialize } from './ionic-global-63a97a32.js';\nconst globalScripts = initialize;\nexport { globalScripts as g };","map":null,"metadata":{},"sourceType":"module"}

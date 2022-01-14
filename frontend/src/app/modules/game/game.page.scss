@@ -50,7 +50,6 @@ ion-toolbar{
         padding-top: 50px;
         display: flex;
         flex-direction: row;
-        align-items: baseline;
 
         *{
 
@@ -62,6 +61,7 @@ ion-toolbar{
 
           margin-left: auto;
           font-size: 1em;
+          text-align: center;
 
         }
 

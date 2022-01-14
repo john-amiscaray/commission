@@ -1,1 +1,0 @@
-{"ast":null,"code":"export class GameAction {\n  constructor(subject, color, size, to, from, canvas) {\n    this.subject = subject;\n    this.color = color;\n    this.size = size;\n    this.to = to;\n    this.from = from;\n    this.canvas = canvas;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}
