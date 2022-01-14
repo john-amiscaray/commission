@@ -32,4 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 
-.angular/cache
+frontend/.angular/cache
