@@ -1,0 +1,31 @@
+<ion-app>
+  <ion-menu content-id="main_content">
+    <ion-content>
+      <ion-list *ngIf="!['/lobby', '/game'].includes(router.url)">
+        <ion-item lines="none" routerLink="home">
+          <ion-icon class="ion-justify-content-center" name="home-outline"></ion-icon>
+          <ion-title>Home</ion-title>
+        </ion-item>
+        <ion-item lines="none" routerLink="profile">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <ion-title>Profile</ion-title>
+        </ion-item>
+        <ion-item lines="none" routerLink="host-game">
+          <ion-icon name="game-controller-outline"></ion-icon>
+          <ion-title>Host Game</ion-title>
+        </ion-item>
+        <ion-item lines="none" routerLink="join-game">
+          <ion-icon name="enter-outline"></ion-icon>
+          <ion-title>Join Game</ion-title>
+        </ion-item>
+      </ion-list>
+      <ion-list *ngIf="router.url == '/game'">
+        <ion-item lines="none" routerLink="home">
+          <ion-icon name="exit-outline"></ion-icon>
+          <ion-title>Leave game</ion-title>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main_content" (window:beforeunload)="onUnload()"></ion-router-outlet>
+</ion-app>

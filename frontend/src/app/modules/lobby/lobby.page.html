@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar color="primary"></ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img id="app-background" src="assets/images/background.png" alt="background">
+  <div id="content-wrapper">
+    <ng-container *ngIf="!loadingLobby">
+<!--      <div id="upper">-->
+<!--        <div id="ban-player">-->
+<!--          &lt;!&ndash;-->
+<!--          Adding the container because the ion-item offsets the placement a little when it appears so I want to keep-->
+<!--          it here consistently so that doesn't happen. A little hacky but who cares css is a pain.-->
+<!--           &ndash;&gt;-->
+<!--          <ng-container *ngIf="isHost && participants.size > 1">-->
+<!--            <ion-label>Ban Player</ion-label>-->
+<!--            <ion-select #ban (ionChange)="onBanSelection(ban)" interface="popover">-->
+<!--              <ng-container *ngFor="let participant of participants.entries()">-->
+<!--                <ion-select-option *ngIf="!isMyId(participant[0])" [value]="participant[0]">-->
+<!--                  {{participant[1].user.name}}-->
+<!--                </ion-select-option>-->
+<!--              </ng-container>-->
+<!--            </ion-select>-->
+<!--          </ng-container>-->
+<!--        </div>-->
+<!--      </div>-->
+      <ion-grid>
+        <ion-row>
+          <ion-col size-md="12">
+            <div>
+              <ion-item-group id="lobby-info">
+                <ion-text>
+                  <h3>Room Code</h3>
+                  <h1>{{lobby.roomCode}}</h1>
+                </ion-text>
+              </ion-item-group>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size-md="8" offset-md="2" size-sm="12">
+            <p id="players-joined" *ngIf="lobby.settings">
+              {{participants.size}}/{{lobby.settings.players}} have joined
+            </p>
+            <ion-card id="lobby-listings">
+              <div class="lobby-list-item" *ngFor="let participant of participants.entries();">
+                <div class="lobby-list-avatar">
+                  <img class="pfp" alt="you" [src]="pfp.getProfilePictureFromName(participant[1].user.pfp)">
+                  <header>
+                    <h1>
+                      {{participant[1].user.name}}
+                    </h1>
+                  </header>
+                </div>
+                <img class="ready-status"
+                     [src]="participant[1].ready ? 'assets/icon/Ready.svg' : 'assets/icon/NotReady.svg'" alt="ready status">
+              </div>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div id="lower">
+
+        <div id="game-options">
+          <div *ngIf="!(isHost && allPlayersReady() && participants.size === lobby.settings.players)">
+            <h3 class="ion-text-center">
+              {{getLobbyStatusText()}}
+            </h3>
+          </div>
+          <ion-button color="primary" id="ready" (click)="toggleReady()">Toggle ready</ion-button>
+          <ion-button id="start-game" *ngIf="isHost && allPlayersReady() && participants.size === lobby.settings.players"
+                      color="success" (click)="lobby.requestStart()">Start game</ion-button>
+          <ion-button color="danger" id="leave" (click)="leave()">Leave Game</ion-button>
+        </div>
+      </div>
+    </ng-container>
+    <app-load *ngIf="loadingLobby"></app-load>
+  </div>
+</ion-content>

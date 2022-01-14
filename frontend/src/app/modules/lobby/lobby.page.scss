@@ -1,0 +1,217 @@
+#content-wrapper{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  ion-grid{
+
+    width: 50%;
+
+  }
+
+  @media only screen and (max-width : 768px){
+
+    ion-grid{
+
+      width: 90%;
+
+    }
+
+  }
+
+  #leave{
+
+    font-size: 16px;
+
+  }
+
+  #game-options{
+
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+
+    ion-button{
+
+      width: 33%;
+
+    }
+
+    @media only screen and (max-width : 768px){
+
+      ion-button{
+
+        width: 50%;
+
+      }
+
+    }
+
+  }
+
+  @media only screen and (max-width : 768px){
+
+    #game-options{
+
+      width: 90%;
+
+    }
+
+  }
+
+  #upper{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 500px;
+
+    #ban-player{
+
+      margin-left: auto;
+
+    }
+
+  }
+
+  #lower{
+
+    align-self: flex-end;
+    width: 80%;
+    position: relative;
+    top: -10px;
+    margin: 0 auto;
+
+  }
+
+  @media only screen and (max-width : 768px){
+    #lower{
+
+      top: -30px;
+
+    }
+  }
+
+  #lobby-info{
+
+    margin: 0 auto;
+
+    ion-text{
+      height: 200px;
+
+      *{
+        margin: 0;
+      }
+
+      h3{
+
+        text-align: center;
+        font-size: 30px;
+
+      }
+
+      h1{
+
+        text-align: center;
+        font-family: Marker, serif;
+        font-size: 40px;
+
+      }
+
+    }
+
+
+  }
+
+  .lobby-list-item{
+
+    width: 100%;
+    font-weight: bolder;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+
+    .lobby-list-avatar{
+
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+      width: 95%;
+
+      header{
+
+        overflow-wrap: break-word;
+        word-break: break-all;
+
+        h1{
+
+          font-size: 20px;
+
+        }
+
+      }
+
+    }
+
+    .pfp{
+
+      width: 83px;
+      height: 83px;
+
+    }
+
+    .ready-status{
+
+      width: 25px;
+      height: 25px;
+      margin-left: auto;
+
+    }
+
+  }
+
+  #lobby-listings{
+
+    overflow-y: auto;
+    height: 350px;
+    padding: 20px 40px;
+    background-color: rgba(255, 255, 255, 0.68);
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+    ::-webkit-scrollbar{
+
+      display: none;
+
+    }
+
+  }
+
+  @media only screen and (max-width : 768px){
+
+    #lobby-listings{
+
+      padding: 10px 20px;
+
+    }
+
+  }
+
+
+}
+
+#players-joined{
+
+  display: block;
+  margin: 0;
+  text-indent: 10px;
+  font-weight: bold;
+
+}

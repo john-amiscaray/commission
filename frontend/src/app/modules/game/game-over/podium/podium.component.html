@@ -1,0 +1,12 @@
+<div id="header-wrapper">
+  <h1 id="name-text">{{name}}</h1>
+  <h3 id="score-text">Score:{{score}}</h3>
+</div>
+
+<svg width="175" height="479" viewBox="0 0 216 479" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="175" height="479" [attr.y]="placement === 1 ? '0.5': placement === 2 ? '191' : '306'"
+        [style.fill]="placement === 1 ? '#FFD700' : placement === 2 ? '#C0C0C0': '#CD7F32'"
+        [attr.height]="placement === 1 ? '478': placement === 2 ? '287' : '172'"></rect>
+  <rect x="0.5" width="175" [attr.height]="placement === 1 ? '478': placement === 2 ? '287' : '172'"
+        stroke="black" stroke-opacity="0.71" [attr.y]="placement === 1 ? '0.5': placement === 2 ? '191' : '306'"></rect>
+</svg>

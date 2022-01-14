@@ -1,0 +1,6 @@
+<div id="list-wrapper">
+  <div class="list-item" *ngFor="let name of profilePictures" (click)="onSelectPicture(name)">
+    <img class="avatar" alt="image" [src]="pfp.getProfilePictureFromName(name)">
+    <ion-button color="primary">Select</ion-button>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img id="app-background" src="assets/images/background.png" alt="background">
+  <ion-backdrop (ionBackdropTap)="router.navigate(['home'])"></ion-backdrop>
+  <ion-card>
+    <ion-card-content>
+      <img alt="error" src="assets/icon/Error.svg">
+      <header>
+        <h1>Oops!</h1>
+      </header>
+      <p>
+        Something went wrong.
+      </p>
+      <p id="error">
+        {{error}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

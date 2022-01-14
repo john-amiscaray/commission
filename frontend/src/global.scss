@@ -1,0 +1,91 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+/* My mixins */
+@import "src/theme/ionic.mixin";
+
+ion-backdrop{
+  background-color: black;
+  visibility: visible;
+  opacity: 0.5;
+  z-index: 5;
+}
+
+ion-content{
+
+  --background: none;
+  overflow-x: auto;
+
+  #app-background{
+
+    opacity: 0.3;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #E0E0E0;
+    z-index: -10;
+
+  }
+
+}
+
+.error-text{
+
+  color: red;
+  font-size: 10px;
+
+}
+
+.form-grid{
+
+  width: 40%;
+
+}
+
+@media only screen and (max-width : 768px){
+  .form-grid{
+
+    width: 380px;
+
+  }
+}
+
+.game-modal, .game-modal *{
+
+  will-change: auto;
+
+}
+
+
+app-load{
+
+  width: 100%;
+  height: 100%;
+
+}

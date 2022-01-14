@@ -1,0 +1,12 @@
+<ion-card>
+  <app-judge-request *ngIf="messageDetails.messageType === GameMessageConstants.JUDGE_REQUEST"
+                     [gameMessageDetails]="messageDetails"></app-judge-request>
+  <app-round-start *ngIf="messageDetails.messageType === GameMessageConstants.MATCH_START"
+                   [gameMessageDetails]="messageDetails"></app-round-start>
+  <app-round-results *ngIf="messageDetails.messageType === GameMessageConstants.MATCH_RESULTS"
+                     [gameMessageDetails]="messageDetails"></app-round-results>
+  <app-round-end *ngIf="messageDetails.messageType === GameMessageConstants.MATCH_END"
+                 [gameMessageDetails]="messageDetails"></app-round-end>
+  <app-game-pause *ngIf="messageDetails.messageType === GameMessageConstants.GAME_PAUSE"
+                [gameMessageDetails]="messageDetails"></app-game-pause>
+</ion-card>

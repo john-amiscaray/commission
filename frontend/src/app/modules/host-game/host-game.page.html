@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-menu-button slot="start"></ion-menu-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <img id="app-background" src="assets/images/background.png" alt="background">
+
+  <h1 class="ion-text-center ion-margin-top" id="title" *ngIf="!loadingGame">
+    Create a Game
+  </h1>
+
+  <ion-grid class="form-grid">
+    <form *ngIf="!loadingGame" id="game-settings" [formGroup]="gameSettings" (ngSubmit)="submit()">
+      <ion-row>
+        <ion-col size-lg="4" offset-lg="4" size-md="8" size-xs="10" offset-xs="1">
+          <ion-card id="options-card">
+            <ion-card-content>
+              <ion-item>
+                <ion-label position="floating" class="ion-margin-bottom">Number of Players</ion-label>
+                <ion-input required formControlName="players" type="number" min="3" max="8"></ion-input>
+                <div *ngIf="gameSettings.controls['players'].invalid" class="error-text">
+                  {{gameSettings.controls['players'].errors['min'] || gameSettings.controls['players'].errors['max'] ?
+                  'you need 3 to 8 players': ''}}
+                  {{gameSettings.controls['players'].errors['required'] ? 'this field is required' : ''}}
+                </div>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Seconds Per Round</ion-label>
+                <ion-input required formControlName="seconds" type="number" min="30" max="120"></ion-input>
+                <div *ngIf="gameSettings.controls['seconds'].invalid" class="error-text">
+                  {{gameSettings.controls['seconds'].errors['min'] || gameSettings.controls['seconds'].errors['max'] ?
+                  'you need a value between 30 to 120 seconds': ''}}
+                  {{gameSettings.controls['seconds'].errors['required'] ? 'this field is required' : ''}}
+                </div>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Number of Rounds</ion-label>
+                <ion-input required formControlName="rounds" type="number" min="3" max="10"></ion-input>
+                <div *ngIf="gameSettings.controls['rounds'].invalid" class="error-text">
+                  {{gameSettings.controls['rounds'].errors['min'] || gameSettings.controls['rounds'].errors['max'] ?
+                  'you need a value between 3 to 10 rounds': ''}}
+                  {{gameSettings.controls['rounds'].errors['required'] ? 'this field is required' : ''}}
+                </div>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-lg="2" offset-lg="5" size-xs="8" offset-xs="2">
+          <ion-button type="submit" id="host-button" [disabled]="!gameSettings.valid">
+            Host Game
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+  <app-load *ngIf="loadingGame"></app-load>
+</ion-content>

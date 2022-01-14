@@ -1,0 +1,62 @@
+#logo{
+
+  position: relative;
+  display: block;
+  left: 15px;
+  margin: 50px auto;
+  width: 300px;
+  height: 100px;
+
+}
+
+#canvas{
+
+  width: 90%;
+  height: 50%;
+  display: block;
+  margin: 50px auto;
+
+}
+
+#drawing{
+
+  stroke-dasharray: 4274;
+  stroke-dashoffset: 4274;
+  animation: draw 10s ease;
+  animation-fill-mode: forwards;
+
+}
+
+#sabotage{
+
+  stroke-dasharray: 5812;
+  stroke-dashoffset: 5812;
+  animation: draw 5s ease;
+  animation-fill-mode: forwards;
+  animation-delay: 10s;
+
+}
+
+#canvas-title{
+
+  font-size: 13px;
+
+}
+
+#bottom-content{
+
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+
+}
+
+@keyframes draw {
+
+  to{
+
+    stroke-dashoffset: 0;
+
+  }
+
+}

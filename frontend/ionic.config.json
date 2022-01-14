@@ -1,0 +1,9 @@
+{
+  "name": "Commission",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "defaultBrowser": "chrome"
+
+}

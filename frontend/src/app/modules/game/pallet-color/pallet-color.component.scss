@@ -1,0 +1,15 @@
+div{
+
+  height: 50px;
+  border: 1px solid black;
+  box-shadow: 0 2px 5px;
+
+}
+
+.pressed{
+
+  border-color: white;
+  box-shadow: none;
+  transform: translateY(10%);
+
+}

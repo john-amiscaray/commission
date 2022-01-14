@@ -1,0 +1,64 @@
+@import "src/theme/ionic.mixin";
+
+ion-card{
+
+  display: block;
+  @include center-div();
+  width: 500px;
+  height: 500px;
+  z-index: 10;
+
+  ion-card-content{
+
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 25px;
+    color: black;
+
+    header{
+
+      h1{
+
+        font-family: Marker, serif;
+        font-weight: bold;
+        font-size: 2em;
+
+      }
+
+    }
+
+    p{
+
+      font-size: 1.125em;
+
+    }
+
+    #error{
+
+      position: relative;
+      top: 5vw;
+      font-size: 1.8em;
+      width: 80%;
+      text-align: center;
+
+    }
+
+  }
+
+}
+
+@media only screen and (max-width : 768px){
+
+  ion-card{
+
+    width: 80%;
+    height: 50%;
+    transform: translate(-53%, -50%);
+
+  }
+
+}

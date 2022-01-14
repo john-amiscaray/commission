@@ -1,0 +1,50 @@
+@import "src/theme/ionic.mixin";
+
+ion-grid{
+
+  height: 100%;
+  display: block;
+  vertical-align: middle;
+
+}
+
+#room-code-input{
+
+  border-color: black;
+  border-width: thin;
+  border-style: solid;
+  border-radius: 3px;
+  box-shadow: 1px 2px 0 rgba(0, 0, 0, 0.5);
+
+}
+
+#page-logo{
+
+  display: block;
+  margin: 0 auto;
+
+}
+
+#join-game{
+
+  width: 100%;
+
+}
+
+#content-wrapper{
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 50%;
+  justify-content: center;
+  @include center-div;
+  gap: 15px;
+
+}
+
+#button-row{
+
+  margin-top: 15px;
+
+}

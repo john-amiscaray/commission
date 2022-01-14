@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-menu-button slot="start"></ion-menu-button>
+    <div id="game-toolbar-content">
+      <app-game-clock [pauseEvent]="pauseEvent" [startEvent]="startEvent" [timePerRound]="game.settings.seconds"></app-game-clock>
+      <h3>{{roundNumber + 1}}/{{game.settings.rounds}}</h3>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="game-message-display">
+    <ion-backdrop *ngIf="messageShouldShow" @fade (ionBackdropTap)="onMessageBackDropClick()"
+                  (click)="onMessageBackDropClick()"></ion-backdrop>
+    <app-game-message *ngIf="messageShouldShow" @fallin @fallout [messageDetails]="currentMessageDetails" id="game-message-content"></app-game-message>
+  </div>
+  <div>
+    <img id="app-background" src="assets/images/background.png" alt="background">
+    <div id="wrapper">
+      <div id="center-screen">
+        <div class="arrow-wrapper" id="left-arrow-wrapper">
+          <svg id="left-arrow" (click)="goToPreviousCanvas()" width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.415 2.115L9.29999 0L0.299988 9L9.29999 18L11.415 15.885L4.54499 9L11.415 2.115Z" fill="black"/>
+          </svg>
+        </div>
+        <div id="active-canvas-wrapper">
+          <header>
+            <h1>{{userConnectedStatus ? userConnectedStatus.get(activeCanvas.value)?.user.name : ''}}'s Canvas</h1>
+            <h3>Draw: {{(currentMessageDetails.judgeRequest && currentMessageDetails.judgeRequest.trim() !== ''
+              ? currentMessageDetails.judgeRequest: 'not yet announced') + '.'}}</h3>
+          </header>
+          <canvas *ngFor="let player of playerCanvases.keys()" [id]="player"
+                  [hidden]="player !== activeCanvas.value"></canvas>
+        </div>
+        <div class="arrow-wrapper" id="right-arrow-wrapper">
+          <svg id="right-arrow" (click)="goToNextCanvas()" width="13" height="18" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.02998 0L0.914978 2.115L7.78498 9L0.914978 15.885L3.02998 18L12.03 9L3.02998 0Z" fill="black"/>
+          </svg>
+        </div>
+      </div>
+      <div id="options">
+        <ion-button id="money" color="success" slot="end">
+          ${{score}}
+        </ion-button>
+      </div>
+      <div id="controls">
+        <div id="pallet">
+          <app-pallet-color [selectedColor]="colorCode" [color]="colorsOnPallet[0]" (click)="colorCode = colorsOnPallet[0]"></app-pallet-color>
+          <app-pallet-color [selectedColor]="colorCode" [color]="colorsOnPallet[1]" (click)="colorCode = colorsOnPallet[1]"></app-pallet-color>
+          <app-pallet-color [selectedColor]="colorCode" [color]="colorsOnPallet[2]" (click)="colorCode = colorsOnPallet[2]"></app-pallet-color>
+          <app-pallet-color [selectedColor]="colorCode" [color]="colorsOnPallet[3]" (click)="colorCode = colorsOnPallet[3]"></app-pallet-color>
+          <app-pallet-color [selectedColor]="colorCode" [color]="colorsOnPallet[4]" (click)="colorCode = colorsOnPallet[4]"></app-pallet-color>
+          <app-pallet-color [selectedColor]="colorCode" [color]="colorsOnPallet[5]" (click)="colorCode = colorsOnPallet[5]"></app-pallet-color>
+        </div>
+        <div id="lower-controls">
+          <svg (click)="onClickEraser()" xmlns="http://www.w3.org/2000/svg" width="34px" height="55px" viewBox="0 0 34 55">
+            <g id="surface1">
+              <path fill="#F18CB9" [style.stroke]="this.eraserSelected ? 'white': 'black' " d="M 0.5 95.101562 L 0.5 1.242188 L 33.5 19.039062 L 33.5 109.132812 Z M 0.5 95.101562 " transform="matrix(1,0,0,0.5,0,0)"/>
+            </g>
+          </svg>
+          <div id="fill-settings">
+            <ion-range min="1" max="150" color="light" [(ngModel)]="brushSize">
+              <ion-icon id="brush-icon" slot="start" size="small" name="brush-outline"></ion-icon>
+            </ion-range>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

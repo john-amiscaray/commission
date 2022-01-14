@@ -1,0 +1,16 @@
+<ion-card-content>
+  <ion-card-header class="ion-text-center">
+    <ion-card-title class="ion-text-center">{{gameMessageDetails.heading}}</ion-card-title>
+  </ion-card-header>
+  <ion-text class="ion-text-center">
+    <p>
+      {{gameMessageDetails.message}}
+    </p>
+  </ion-text>
+  <ion-slides #slides pager="true" *ngIf="gameMessageDetails.isJudge" (ionSlideDidChange)="slideChanged(slides)">
+    <ion-slide *ngFor="let url of urls">
+      <img alt="someone's drawing" [src]="url">
+    </ion-slide>
+  </ion-slides>
+  <ion-button *ngIf="gameMessageDetails.isJudge" (click)="submitChoice()" class="ion-align-self-center" color="primary">Select Drawing</ion-button>
+</ion-card-content>

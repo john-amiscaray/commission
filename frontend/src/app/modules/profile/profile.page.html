@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-menu-button slot="start"></ion-menu-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <img id="app-background" src="assets/images/background.png" alt="background">
+
+  <div id="content">
+    <div id="name-wrapper" (click)="presentNameSelect($event)">
+      <h1>{{username ? username: 'loading...'}}</h1>
+      <ion-icon id="edit-icon" name="pencil-outline"></ion-icon>
+    </div>
+    <div (click)="presentProfilePictures()" id="avatar-holder">
+      <img id="avatar" [src]="selectedImage" alt="you">
+    </div>
+    <p>Select an avatar to set a profile picture
+      and click on your name to change it.</p>
+  </div>
+
+</ion-content>

@@ -1,0 +1,9 @@
+<ion-content>
+  <ion-header class="ion-text-center">
+    <h1>Here are your winners!</h1>
+  </ion-header>
+  <div id="podium-wrapper">
+    <app-podium *ngFor="let entry of topThree.entries(); let i = index"
+                [score]="entry[1]" [name]="entry[0]" [placement]="i + 1"></app-podium>
+  </div>
+</ion-content>
