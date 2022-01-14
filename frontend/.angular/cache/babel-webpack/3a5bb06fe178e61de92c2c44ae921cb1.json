@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { Plugins } from '@capacitor/core';\nconst {\n  SplashScreen\n} = Plugins;\nexport class ComponentWithSplashIntro {\n  ionViewWillEnter() {\n    SplashScreen.show({\n      showDuration: 2000,\n      autoHide: true\n    });\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

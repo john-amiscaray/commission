@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class GameSettings {\n  constructor(players = 5, seconds = 60, rounds = 5) {\n    this.players = players;\n    this.seconds = seconds;\n    this.rounds = rounds;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

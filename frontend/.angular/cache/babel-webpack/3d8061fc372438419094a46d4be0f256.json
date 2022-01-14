@@ -1,0 +1,1 @@
+{"ast":null,"code":"/**\n * Call [Client#subscribe]{@link Client#subscribe} to create a StompSubscription.\n *\n * Part of `@stomp/stompjs`.\n */\nexport class StompSubscription {} //# sourceMappingURL=stomp-subscription.js.map","map":null,"metadata":{},"sourceType":"module"}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class LinkedListNode {\n  constructor(value, next = null, previous = null) {\n    this.value = value;\n    this.next = next;\n    this.previous = previous;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

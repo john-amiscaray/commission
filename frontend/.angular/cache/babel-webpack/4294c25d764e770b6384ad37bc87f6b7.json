@@ -1,0 +1,1 @@
+{"ast":null,"code":"/**\n * Represents a configuration object for RxSTOMP.\n * Instance of this can be passed to [RxStomp#configure]{@link RxStomp#configure}\n *\n * All the attributes of this calls are optional.\n *\n * Part of `@stomp/rx-stomp`\n */\nexport class RxStompConfig {} //# sourceMappingURL=rx-stomp-config.js.map","map":null,"metadata":{},"sourceType":"module"}

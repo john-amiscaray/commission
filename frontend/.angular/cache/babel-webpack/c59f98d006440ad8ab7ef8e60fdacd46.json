@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { AnimationController } from \"@ionic/angular\";\nexport const navigateAnimation = (baseEL, opts) => {\n  const ctrl = new AnimationController();\n  return ctrl.create().addElement(opts.leavingEl).duration(500).easing('ease-in').fromTo('opacity', 1, 0);\n};","map":null,"metadata":{},"sourceType":"module"}
