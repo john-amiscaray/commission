@@ -5,6 +5,7 @@ import {GameSettings} from "../../dtos/GameSettings";
 import {UserLobbyStatus} from "../../dtos/UserLobbyStatus";
 import {ParticipantInfo} from "../../dtos/GameIdentity";
 import {Router} from "@angular/router";
+import {GameMessageService} from "../../services/game-message.service";
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ import {Router} from "@angular/router";
 })
 export class HomePage {
 
-  constructor(public auth: AuthService, public game: GameService, public router: Router) {}
+  constructor(public auth: AuthService, public game: GameService, public router: Router, public msg: GameMessageService) {}
 
   ionViewDidEnter(){
 

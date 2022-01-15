@@ -1,18 +1,24 @@
-#header-wrapper{
+*{
 
-  width: 175px;
-  margin-left: 15px;
+  text-align: center;
 
-  #name-text{
+}
 
-    font-size: 26px;
+#name-text{
 
-  }
+  font-size: 26px;
 
-  #score-text{
+}
 
-    font-size: 18px;
+#score-text{
 
-  }
+  font-size: 18px;
+  margin: 0;
+
+}
+
+#podium-outline{
+
+  filter: drop-shadow(1px 10px 10px black);
 
 }
