@@ -27,7 +27,7 @@ export class ProfilePictureService {
       case ProfilePictureService.Bach:
         return '/assets/images/profile-pictures/002.png';
       default:
-        throw new Error('Invalid Profile Picture Name');
+        throw new Error(`Invalid Profile Picture Name ${name}`);
     }
   }
 

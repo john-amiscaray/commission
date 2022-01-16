@@ -2,7 +2,7 @@
   <h1>Game Over!</h1>
   <div id="podium-wrapper">
     <app-podium *ngFor="let entry of topThree.entries(); let i = index"
-                [score]="entry[1]" [name]="entry[0].name" [placement]="i + 1"></app-podium>
+                [score]="entry[1]" [name]="entry[0].name" [placement]="i + 1" [pfpName]="entry[0].pfp"></app-podium>
   </div>
   <h3>Final Score</h3>
 </ion-content>

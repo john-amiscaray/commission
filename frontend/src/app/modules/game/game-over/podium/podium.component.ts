@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ProfilePictureService} from "../../../../services/profile-picture.service";
 
 @Component({
   selector: 'app-podium',
@@ -16,7 +17,10 @@ export class PodiumComponent implements OnInit {
   @Input()
   placement: number
 
-  constructor() { }
+  @Input()
+  pfpName: string
+
+  constructor(public pfp: ProfilePictureService) { }
 
   ngOnInit() {}
 

@@ -8,6 +8,7 @@ import {GameMessageDetails} from "../dtos/GameMessageDetails";
 import {GameMessageScreen} from "../modules/game/game-message/game-message-screen-enum";
 import {GameService} from "./game.service";
 import {ParticipantInfo} from "../dtos/GameIdentity";
+import {ProfilePictureService} from "./profile-picture.service";
 let queue;
 (<any>window).createjs = createjs;
 
@@ -104,9 +105,9 @@ export class GameMessageService {
 
   async presentTestGameOverModal(){
 
-    await this.presentGameOverModal(new Map([[new ParticipantInfo(1, 'dog', 'Bobbert', 'FAKE'), 200],
-      [new ParticipantInfo(1, 'dog', 'Jimboo', 'FAKE'), 180],
-      [new ParticipantInfo(1, 'dog', 'Larry', 'FAKE'), 50]]));
+    await this.presentGameOverModal(new Map([[new ParticipantInfo(1, ProfilePictureService.Bach, 'Bobbert', 'FAKE'), 200],
+      [new ParticipantInfo(1, ProfilePictureService.Dog, 'Jimboo', 'FAKE'), 180],
+      [new ParticipantInfo(1, ProfilePictureService.Cat, 'Larry', 'FAKE'), 50]]));
 
   }
 

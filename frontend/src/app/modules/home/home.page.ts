@@ -6,6 +6,7 @@ import {UserLobbyStatus} from "../../dtos/UserLobbyStatus";
 import {ParticipantInfo} from "../../dtos/GameIdentity";
 import {Router} from "@angular/router";
 import {GameMessageService} from "../../services/game-message.service";
+import {ProfilePictureService} from "../../services/profile-picture.service";
 
 @Component({
   selector: 'app-home',
@@ -32,15 +33,15 @@ export class HomePage {
 
     lobbyStatus.set(1, new UserLobbyStatus());
     lobbyStatus.get(1).ready = true;
-    lobbyStatus.get(1).user = new ParticipantInfo(1, 'Dog', 'Zee', 'TEST');
+    lobbyStatus.get(1).user = new ParticipantInfo(1, ProfilePictureService.Dog, 'Zee', 'TEST');
 
     lobbyStatus.set(2, new UserLobbyStatus());
     lobbyStatus.get(2).ready = true;
-    lobbyStatus.get(2).user = new ParticipantInfo(2, 'Dog', 'Bobbert', 'TEST');
+    lobbyStatus.get(2).user = new ParticipantInfo(2, ProfilePictureService.Dog, 'Bobbert', 'TEST');
 
     lobbyStatus.set(3, new UserLobbyStatus());
     lobbyStatus.get(3).ready = true;
-    lobbyStatus.get(3).user = new ParticipantInfo(3, 'Dog', 'Bee', 'TEST');
+    lobbyStatus.get(3).user = new ParticipantInfo(3, ProfilePictureService.Dog, 'Bee', 'TEST');
 
     this.game.init('TEST', new GameSettings(3, 30, 3), lobbyStatus, [1, 2, 3]);
     this.router.navigate(['game']);

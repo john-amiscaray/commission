@@ -1,21 +1,21 @@
-.score-text, .name-text{
+#score-text, #name-text, #placement{
 
   z-index: 10;
+  text-align: center;
 
 }
 
 
-.name-text{
+#name-text{
 
   font: 26px Varela;
   fill: black;
   position: relative;
   top: -85px;
-  text-align: center;
 
 }
 
-.score-text{
+#score-text{
 
   position: relative;
   top: -90px;
@@ -23,13 +23,25 @@
   font-size: 1.2em;
   color: black;
   font-family: 'Varela', sans-serif;
-  text-align: center;
+
+}
+
+#placement{
+
+  font-family: 'Marker', sans-serif;
+  position: relative;
 
 }
 
 #podium-outline{
 
   filter: drop-shadow(1px 10px 10px black);
+
+}
+
+#pfp{
+
+  position: relative;
 
 }
 
