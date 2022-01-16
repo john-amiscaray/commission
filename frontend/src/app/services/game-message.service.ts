@@ -93,11 +93,11 @@ export class GameMessageService {
     })
     return await modal.present().then(_ => {
       createjs.Sound.play('end-music');
-      // setTimeout(_ => {
-      //
-      //   modal.dismiss();
-      //
-      // }, 5000);
+      setTimeout(_ => {
+
+        modal.dismiss();
+
+      }, 5000);
       this.game.clearResourcesOnComplete();
     });
 

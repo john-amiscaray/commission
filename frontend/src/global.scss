@@ -74,12 +74,11 @@ ion-content{
     width: 380px;
 
   }
-}
+  .game-modal{
 
-.game-modal, .game-modal *{
+    opacity: 95%;
 
-  will-change: auto;
-
+  }
 }
 
 app-load{
