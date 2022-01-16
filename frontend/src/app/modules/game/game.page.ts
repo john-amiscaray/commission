@@ -230,7 +230,7 @@ export class GamePage extends ComponentWithSplashIntro implements AfterViewInit,
         let scoresMap = new Map();
         let scores = status.scores as Object
         for (let user in scores) {
-          scoresMap.set(self.userConnectedStatus.get(parseInt(user)).user.name,
+          scoresMap.set(self.userConnectedStatus.get(parseInt(user)).user,
             scores[user]);
         }
         self.modal.presentGameOverModal(new Map([...scoresMap].sort(

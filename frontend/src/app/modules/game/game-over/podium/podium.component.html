@@ -1,6 +1,4 @@
-<h1 id="name-text">{{name}}</h1>
-
-<svg width="100%" height="250" viewBox="0 0 175 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="100%" height="300" viewBox="0 0 175 300" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="175" height="200" [attr.y]="placement === 1 ? '0': placement === 2 ? '100' : '200'"
         [style.fill]="placement === 1 ? '#FFD700' : placement === 2 ? '#C0C0C0': '#CD7F32'"
         [attr.height]="placement === 1 ? '300': placement === 2 ? '200' : '100'"></rect>
@@ -8,4 +6,5 @@
         stroke="black" stroke-width="1px" stroke-opacity="0.25" [attr.y]="placement === 1 ? '0': placement === 2 ? '100' : '200'"></rect>
 </svg>
 
-<h3 id="score-text">{{score}}</h3>
+<h1 class="name-text">{{name}}</h1>
+<h3 class="score-text">{{score}}</h3>

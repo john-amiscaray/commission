@@ -1,19 +1,29 @@
-*{
+.score-text, .name-text{
 
+  z-index: 10;
+
+}
+
+
+.name-text{
+
+  font: 26px Varela;
+  fill: black;
+  position: relative;
+  top: -85px;
   text-align: center;
 
 }
 
-#name-text{
+.score-text{
 
-  font-size: 26px;
-
-}
-
-#score-text{
-
-  font-size: 18px;
-  margin: 0;
+  position: relative;
+  top: -90px;
+  margin-bottom: -40px;
+  font-size: 1.2em;
+  color: black;
+  font-family: 'Varela', sans-serif;
+  text-align: center;
 
 }
 
@@ -22,3 +32,4 @@
   filter: drop-shadow(1px 10px 10px black);
 
 }
+

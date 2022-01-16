@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {ParticipantInfo} from "../../../dtos/GameIdentity";
 
 @Component({
   selector: 'app-game-over',
@@ -8,7 +9,7 @@ import {Component, Input} from '@angular/core';
 export class GameOverComponent {
 
   @Input()
-  topThree: Map<string, number>
+  topThree: Map<ParticipantInfo, number>
 
   constructor() { }
 

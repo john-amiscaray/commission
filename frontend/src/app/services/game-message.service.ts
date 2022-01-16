@@ -7,6 +7,7 @@ import * as createjs from 'createjs-module';
 import {GameMessageDetails} from "../dtos/GameMessageDetails";
 import {GameMessageScreen} from "../modules/game/game-message/game-message-screen-enum";
 import {GameService} from "./game.service";
+import {ParticipantInfo} from "../dtos/GameIdentity";
 let queue;
 (<any>window).createjs = createjs;
 
@@ -72,7 +73,7 @@ export class GameMessageService {
   }
 
 
-  async presentGameOverModal(scores: Map<string, number>){
+  async presentGameOverModal(scores: Map<ParticipantInfo, number>){
 
     const modal = await this.modalController.create({
 
@@ -91,6 +92,11 @@ export class GameMessageService {
     })
     return await modal.present().then(_ => {
       createjs.Sound.play('end-music');
+      // setTimeout(_ => {
+      //
+      //   modal.dismiss();
+      //
+      // }, 5000);
       this.game.clearResourcesOnComplete();
     });
 
@@ -98,7 +104,9 @@ export class GameMessageService {
 
   async presentTestGameOverModal(){
 
-    await this.presentGameOverModal(new Map([['Bobbert', 200], ['Jimboo', 180], ['Larry', 50]]));
+    await this.presentGameOverModal(new Map([[new ParticipantInfo(1, 'dog', 'Bobbert', 'FAKE'), 200],
+      [new ParticipantInfo(1, 'dog', 'Jimboo', 'FAKE'), 180],
+      [new ParticipantInfo(1, 'dog', 'Larry', 'FAKE'), 50]]));
 
   }
 
