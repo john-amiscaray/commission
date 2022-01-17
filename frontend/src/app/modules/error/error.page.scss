@@ -8,6 +8,12 @@ ion-card{
   height: 500px;
   z-index: 10;
 
+  ion-card-content::before{
+
+    content: " ";
+
+  }
+
   ion-card-content{
 
     display: flex;
@@ -33,7 +39,8 @@ ion-card{
 
     p{
 
-      font-size: 1.125em;
+      font-size: 2em;
+      text-align: center;
 
     }
 
@@ -41,9 +48,8 @@ ion-card{
 
       position: relative;
       top: 5vw;
-      font-size: 1.8em;
+      font-size: 1em;
       width: 80%;
-      text-align: center;
 
     }
 
