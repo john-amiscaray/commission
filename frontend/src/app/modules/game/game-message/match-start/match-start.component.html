@@ -2,24 +2,25 @@
   <ion-card-header>
     <ion-card-title class="ion-text-center">{{gameMessageDetails.heading}}</ion-card-title>
   </ion-card-header>
-  <ion-text class="ion-text-center">
-    <p>
-      {{gameMessageDetails.message}}
-    </p>
+  <ion-text class="ion-text-center game-message-content">
+    <p [innerHTML]="gameMessageDetails.message"></p>
   </ion-text>
   <ng-container *ngIf="gameMessageDetails.isJudge">
     <ion-item>
-      <ion-label position="floating">
+      <ion-label position="floating" class="game-message-content">
         What do they draw?
       </ion-label>
       <ion-textarea [(ngModel)]="thingToDraw">
       </ion-textarea>
     </ion-item>
-    <ion-button color="primary" (click)="generateRandomPrompt()">
-      random prompt
-    </ion-button>
-    <ion-button color="primary" (click)="dismiss()">
-      Start Match
-    </ion-button>
+    <div id="controls">
+      <ion-button color="primary" (click)="generateRandomPrompt()">
+        random prompt
+      </ion-button>
+      <ion-button color="success" (click)="dismiss()">
+        Start Match
+      </ion-button>
+    </div>
+
   </ng-container>
 </ion-card-content>

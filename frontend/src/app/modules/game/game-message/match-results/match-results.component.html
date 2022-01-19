@@ -2,7 +2,7 @@
   <ion-card-header class="ion-text-center">
     <ion-card-title>{{gameMessageDetails.heading}}</ion-card-title>
   </ion-card-header>
-  <ion-text class="ion-text-center">
-    <p>{{gameMessageDetails.message}}</p>
+  <ion-text class="ion-text-center game-message-content">
+    <p [innerHTML]="gameMessageDetails.message"></p>
   </ion-text>
 </ion-card-content>

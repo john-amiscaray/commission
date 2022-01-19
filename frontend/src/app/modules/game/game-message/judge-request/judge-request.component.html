@@ -2,9 +2,9 @@
   <ion-card-header>
     <ion-card-title class="ion-text-center">{{gameMessageDetails.heading}}</ion-card-title>
   </ion-card-header>
-  <ion-text class="ion-text-center">
+  <ion-text class="ion-text-center game-message-content">
     <p *ngIf="!gameMessageDetails.isJudge">
-      The judge wants you to draw: {{gameMessageDetails.judgeRequest}}. Get going!
+      The judge wants you to draw: <span class="game-message-important"> {{gameMessageDetails.judgeRequest}} </span>
     </p>
     <p *ngIf="gameMessageDetails.isJudge">
       Wait for the artists to finish drawing your piece. Take a cup of tea or something and enjoy yourself!

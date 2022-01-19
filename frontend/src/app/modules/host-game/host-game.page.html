@@ -27,7 +27,7 @@
                 </div>
               </ion-item>
               <ion-item>
-                <ion-label position="floating">Seconds Per Round</ion-label>
+                <ion-label position="floating">Seconds Per Match</ion-label>
                 <ion-input required formControlName="seconds" type="number" min="30" max="120"></ion-input>
                 <div *ngIf="gameSettings.controls['seconds'].invalid" class="error-text">
                   {{gameSettings.controls['seconds'].errors['min'] || gameSettings.controls['seconds'].errors['max'] ?

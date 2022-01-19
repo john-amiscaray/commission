@@ -27,7 +27,10 @@ import {PalletColorComponent} from "./pallet-color/pallet-color.component";
         GamePageRoutingModule,
         ProfilePageModule
     ],
-  declarations: [GamePage, MatchStartComponent, JudgeRequestComponent, MatchEndComponent, MatchResultsComponent,
-    GameOverComponent, PodiumComponent, GameClockComponent, GameMessageComponent, GamePauseComponent, PalletColorComponent]
+    exports: [
+        GameMessageComponent
+    ],
+    declarations: [GamePage, MatchStartComponent, JudgeRequestComponent, MatchEndComponent, MatchResultsComponent,
+        GameOverComponent, PodiumComponent, GameClockComponent, GameMessageComponent, GamePauseComponent, PalletColorComponent]
 })
 export class GamePageModule {}

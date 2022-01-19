@@ -33,7 +33,8 @@ export class GameMessageService {
 
     return new GameMessageDetails('Match Started!', isJudge ?
       'You are the judge! You will decide the fate of the contestants this match.'
-      : 'You are an artist! You will draw what the judge wants you to draw and sabotage other artists to win money. Wait for the judge to pick what you will to draw',
+      : 'You are an artist! You will draw what the judge wants you to draw and sabotage other artists to win money. ' +
+        '<span class="game-message-important">Waiting for the judge...</span>',
       GameStatusType.MATCH_START, isJudge, null, null, false);
 
   }
@@ -65,10 +66,10 @@ export class GameMessageService {
 
   getMatchResultsDetails(isJudge: boolean, winner: number){
 
-    return new GameMessageDetails('The Judge Has Spoken!',isJudge ?
-      `You've made your decision! The winner here is ${this.game.userConnectedStatus.get(winner).user.name}`:
-      winner === parseInt(this.auth.getGameId()) ? 'Congrats you won the match! You will be awarded $500 for your ' +
-        'masterpiece. Keep it up!' : 'You lost this match. Better luck next time.', GameMessageScreen.MATCH_RESULTS,
+    return new GameMessageDetails('The Judge Has Spoken!',
+      `The winner of this match (and the $500 prize for it) is:
+      <span class="game-message-important"> ${this.game.userConnectedStatus.get(winner).user.name} </span>`,
+      GameMessageScreen.MATCH_RESULTS,
       isJudge, null, null, false);
 
   }
