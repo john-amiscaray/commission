@@ -4,9 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import me.john.amiscaray.commissionbackend.dto.auth.GameIdentity
 import me.john.amiscaray.commissionbackend.dto.game.GameSettings
 import me.john.amiscaray.commissionbackend.exceptions.InvalidGameSettingsException
+import me.john.amiscaray.commissionbackend.exceptions.RoomNotFoundException
+import me.john.amiscaray.commissionbackend.exceptions.UserNotFoundException
 import me.john.amiscaray.commissionbackend.services.ActiveGameService
 import me.john.amiscaray.commissionbackend.services.LobbyService
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -94,15 +95,19 @@ internal class GamePrepControllerTest {
 
     }
 
-    @Test
-    @DisplayName("When get participant info with room code and id, return participant with that room code and id")
-    fun getParticipantInfo() {
+    @Nested
+    @DisplayName("Get Participant Info Tests")
+    inner class ParticipantInfoTests{
 
-        val sample = GameIdentity(id=id, pfp="", uuid="fake", name="Bobbert", room=roomCode, token="also fake")
-        Mockito.`when`(lobbyService.getUserDetails(roomCode, id))
+        @Test
+        @DisplayName("When get participant info with room code and id, return participant with that room code and id")
+        fun test1() {
+
+            val sample = GameIdentity(id=id, pfp="", uuid="fake", name="Bobbert", room=roomCode, token="also fake")
+            Mockito.`when`(lobbyService.getUserDetails(roomCode, id))
                 .thenReturn(sample)
 
-        mockMvc.get(URI("/room/$roomCode/player/$id"))
+            mockMvc.get(URI("/room/$roomCode/player/$id"))
                 .andExpect {
                     content {
                         contentType(MediaType.APPLICATION_JSON)
@@ -113,7 +118,45 @@ internal class GamePrepControllerTest {
                     }
                 }
 
-        Mockito.verify(lobbyService, Mockito.times(1)).getUserDetails(roomCode, id)
+            Mockito.verify(lobbyService, Mockito.times(1)).getUserDetails(roomCode, id)
+
+        }
+
+        @Test
+        @DisplayName("When get participant info with room code and id and user not found, then return 404")
+        fun test2() {
+
+            Mockito.`when`(lobbyService.getUserDetails(roomCode, id))
+                .thenThrow(UserNotFoundException::class.java)
+
+            mockMvc.get(URI("/room/$roomCode/player/$id"))
+                .andExpect {
+                    status {
+                        isNotFound()
+                    }
+                }
+
+            Mockito.verify(lobbyService, Mockito.times(1)).getUserDetails(roomCode, id)
+
+        }
+
+        @Test
+        @DisplayName("When get participant info with room code and id and room not found, then return 404")
+        fun test3() {
+
+            Mockito.`when`(lobbyService.getUserDetails(roomCode, id))
+                .thenThrow(RoomNotFoundException::class.java)
+
+            mockMvc.get(URI("/room/$roomCode/player/$id"))
+                .andExpect {
+                    status {
+                        isNotFound()
+                    }
+                }
+
+            Mockito.verify(lobbyService, Mockito.times(1)).getUserDetails(roomCode, id)
+
+        }
 
     }
 

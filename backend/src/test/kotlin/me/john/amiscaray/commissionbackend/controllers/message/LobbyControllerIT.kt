@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit
 @ActiveProfiles("test")
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-internal class LobbyControllerIntegrationTest {
+internal class LobbyControllerIT {
 
     @Autowired
     private lateinit var environment: Environment

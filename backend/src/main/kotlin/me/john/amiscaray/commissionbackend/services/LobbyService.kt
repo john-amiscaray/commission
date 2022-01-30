@@ -2,7 +2,6 @@ package me.john.amiscaray.commissionbackend.services
 
 import me.john.amiscaray.commissionbackend.dto.auth.GameIdentity
 import me.john.amiscaray.commissionbackend.dto.game.GameSettings
-import me.john.amiscaray.commissionbackend.dto.game.ParticipantInfo
 import me.john.amiscaray.commissionbackend.dto.lobby.RoomConfiguration
 import me.john.amiscaray.commissionbackend.exceptions.*
 import org.slf4j.LoggerFactory

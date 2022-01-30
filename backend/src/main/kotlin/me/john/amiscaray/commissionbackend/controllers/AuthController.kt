@@ -1,7 +1,6 @@
 package me.john.amiscaray.commissionbackend.controllers
 
 import me.john.amiscaray.commissionbackend.dto.auth.GameIdentity
-import me.john.amiscaray.commissionbackend.exceptions.RoomNotFoundException
 import me.john.amiscaray.commissionbackend.services.LobbyService
 import me.john.amiscaray.commissionbackend.services.SessionIdService
 import org.slf4j.LoggerFactory
@@ -21,7 +20,7 @@ class AuthController(private val lobby: LobbyService, private val sessionIdServi
     }
 
     @DeleteMapping("/sessionId/{sessionId}")
-    fun revokeSessionId(@PathVariable("sessionId") uuidAsString: String): ResponseEntity<Any> {
+    fun revokeSessionId(@PathVariable("sessionId") uuidAsString: String): ResponseEntity<Void> {
 
         sessionIdService.revokeUUID(uuidAsString)
         return ResponseEntity
@@ -32,15 +31,10 @@ class AuthController(private val lobby: LobbyService, private val sessionIdServi
 
     @PostMapping("/room/{roomCode}/game-identity")
     @ResponseBody
-    fun requestGameId(@PathVariable("roomCode") roomCode: String, @RequestBody identity: GameIdentity): ResponseEntity<Any>{
+    fun requestGameId(@PathVariable("roomCode") roomCode: String, @RequestBody identity: GameIdentity): ResponseEntity<GameIdentity>{
 
-        return try{
-            ResponseEntity.ok()
-                    .body(lobby.createGameId(roomCode, identity))
-        }catch(error: RoomNotFoundException){
-            ResponseEntity.notFound()
-                    .build()
-        }
+        return ResponseEntity.ok()
+            .body(lobby.createGameId(roomCode, identity))
 
     }
 
