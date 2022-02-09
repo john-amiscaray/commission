@@ -353,6 +353,16 @@ export class GamePage extends ComponentWithSplashIntro implements AfterViewInit,
     }
   }
 
+  onPalletColorClick(color){
+
+    if(!this.eraserSelected){
+
+      this.colorCode = color;
+
+    }
+
+  }
+
   goToNextCanvas(){
 
     this.activeCanvas = this.activeCanvas.next;

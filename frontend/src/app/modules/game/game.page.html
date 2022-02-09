@@ -45,12 +45,7 @@
       </div>
       <div id="controls">
         <div id="pallet">
-          <app-pallet-color [selectedColor]="colorCode" [color]="colorsOnPallet[0]" (click)="colorCode = colorsOnPallet[0]"></app-pallet-color>
-          <app-pallet-color [selectedColor]="colorCode" [color]="colorsOnPallet[1]" (click)="colorCode = colorsOnPallet[1]"></app-pallet-color>
-          <app-pallet-color [selectedColor]="colorCode" [color]="colorsOnPallet[2]" (click)="colorCode = colorsOnPallet[2]"></app-pallet-color>
-          <app-pallet-color [selectedColor]="colorCode" [color]="colorsOnPallet[3]" (click)="colorCode = colorsOnPallet[3]"></app-pallet-color>
-          <app-pallet-color [selectedColor]="colorCode" [color]="colorsOnPallet[4]" (click)="colorCode = colorsOnPallet[4]"></app-pallet-color>
-          <app-pallet-color [selectedColor]="colorCode" [color]="colorsOnPallet[5]" (click)="colorCode = colorsOnPallet[5]"></app-pallet-color>
+          <app-pallet-color *ngFor="let color of colorsOnPallet" [selectedColor]="colorCode" [color]="color" (click)="onPalletColorClick(color)"></app-pallet-color>
         </div>
         <div id="lower-controls">
           <svg (click)="onClickEraser()" xmlns="http://www.w3.org/2000/svg" width="34px" height="55px" viewBox="0 0 34 55">
