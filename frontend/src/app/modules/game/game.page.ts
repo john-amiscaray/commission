@@ -39,7 +39,7 @@ export class GamePage extends ComponentWithSplashIntro implements AfterViewInit,
   isJudge = false;
   currentJudge: number = -1;
   roundNumber: number = 1;
-  colorPickerSelection: string = this.colorCode;
+  colorPalletSelection: string = this.colorCode;
   displayedJudgeCanvasWarning: boolean = false;
   startEvent: Subject<number> = new Subject<any>();
   pauseEvent: Subject<boolean> = new Subject<boolean>();
@@ -349,17 +349,15 @@ export class GamePage extends ComponentWithSplashIntro implements AfterViewInit,
     if(this.eraserSelected){
       this.colorCode = '#EAEEEF';
     }else{
-      this.colorCode = this.colorPickerSelection;
+      this.colorCode = this.colorPalletSelection;
     }
   }
 
   onPalletColorClick(color){
 
-    if(!this.eraserSelected){
-
-      this.colorCode = color;
-
-    }
+    this.eraserSelected = false;
+    this.colorCode = color;
+    this.colorPalletSelection = color;
 
   }
 
