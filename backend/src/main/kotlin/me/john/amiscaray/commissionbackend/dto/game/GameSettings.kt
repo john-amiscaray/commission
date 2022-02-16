@@ -2,6 +2,11 @@ package me.john.amiscaray.commissionbackend.dto.game
 
 class GameSettings(val players: Int, val seconds: Int, val rounds: Int) {
 
+    constructor(): this(3, 30, 3){
+
+
+    }
+
     // Need to override equals and hashcode or else a test fails. Why? I don't know, but this is dumb.
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

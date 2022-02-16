@@ -1,20 +1,28 @@
 package me.john.amiscaray.commissionbackend.controllers.message
 
+
+import com.fasterxml.jackson.databind.ObjectMapper
 import me.john.amiscaray.commissionbackend.dto.auth.GameIdentity
 import me.john.amiscaray.commissionbackend.dto.game.GameSettings
 import me.john.amiscaray.commissionbackend.dto.lobby.LobbyStatus
 import me.john.amiscaray.commissionbackend.services.LobbyService
 import me.john.amiscaray.commissionbackend.services.SessionIdService
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.core.env.Environment
 import org.springframework.messaging.converter.MappingJackson2MessageConverter
-import org.springframework.messaging.simp.stomp.StompFrameHandler
+import org.springframework.messaging.simp.stomp.StompCommand
 import org.springframework.messaging.simp.stomp.StompHeaders
+import org.springframework.messaging.simp.stomp.StompSession
 import org.springframework.messaging.simp.stomp.StompSessionHandlerAdapter
 import org.springframework.test.context.ActiveProfiles
+import org.springframework.util.MimeType
 import org.springframework.web.socket.client.standard.StandardWebSocketClient
 import org.springframework.web.socket.messaging.WebSocketStompClient
 import org.springframework.web.socket.sockjs.client.SockJsClient
@@ -25,7 +33,7 @@ import java.util.concurrent.CompletableFuture
 import java.util.concurrent.TimeUnit
 
 @ActiveProfiles("test")
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 internal class LobbyControllerIT {
 
@@ -37,12 +45,14 @@ internal class LobbyControllerIT {
     private val result: CompletableFuture<LobbyStatus> = CompletableFuture()
 
     private val lobbyReceiveEndpoint = "/game-status/lobby"
-    private val lobbySendEndpoint = "/lobby"
+    private val lobbySendEndpoint = "/game/lobby"
 
     @Autowired
     private lateinit var lobbyService: LobbyService
     @Autowired
     private lateinit var sessionIdService: SessionIdService
+
+    private var logger: Logger = LoggerFactory.getLogger(LobbyControllerIT::class.java)
 
     private lateinit var roomCode: String
     private var sampleGameId = GameIdentity(-1, "", "fake uuid", "Bobbert", "", "")
@@ -52,7 +62,7 @@ internal class LobbyControllerIT {
     fun initTests(){
 
         port = parseInt(environment.getProperty("server.port"))
-        endpoint = "ws://localhost:$port/stomp"
+        endpoint = "ws://localhost:$port/api/stomp"
         sampleGameId.uuid = sessionIdService.generateNewUUID().toString()
         stompClient = WebSocketStompClient(SockJsClient(
             listOf(WebSocketTransport(StandardWebSocketClient()))
@@ -63,23 +73,25 @@ internal class LobbyControllerIT {
 
     }
 
-    fun getStompFrameHandler(): StompFrameHandler{
+    fun getStompFrameHandler(): StompSessionHandlerAdapter{
 
-        return object: StompFrameHandler {
+        return object: StompSessionHandlerAdapter() {
 
             override fun getPayloadType(headers: StompHeaders): Type {
+
                 return LobbyStatus::class.java
             }
 
             override fun handleFrame(headers: StompHeaders, payload: Any?) {
+
                 result.complete(payload as LobbyStatus)
+
             }
 
         }
 
     }
 
-    @Disabled
     @Test
     @DisplayName("When sending message to room that does not exist, send kick player")
     fun test1(){
@@ -95,6 +107,7 @@ internal class LobbyControllerIT {
 
         stompHeaders.destination = "$lobbySendEndpoint/$roomCode"
         stompHeaders.set("token", sampleGameId.token)
+        stompHeaders.contentType = MimeType.valueOf("application/json");
 
         session.send(stompHeaders, LobbyStatus(
             statusType = LobbyStatus.LobbyStatusType.CONNECT,
@@ -104,7 +117,7 @@ internal class LobbyControllerIT {
             settings = settings
         ))
 
-        val response = result.get(1, TimeUnit.SECONDS)
+        val response = result.get(10, TimeUnit.SECONDS)
 
         assert(response.statusType == LobbyStatus.LobbyStatusType.KICK_PLAYER)
 
