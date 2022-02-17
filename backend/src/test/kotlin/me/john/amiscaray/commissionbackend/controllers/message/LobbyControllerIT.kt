@@ -1,25 +1,19 @@
 package me.john.amiscaray.commissionbackend.controllers.message
 
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import me.john.amiscaray.commissionbackend.dto.auth.GameIdentity
 import me.john.amiscaray.commissionbackend.dto.game.GameSettings
 import me.john.amiscaray.commissionbackend.dto.lobby.LobbyStatus
 import me.john.amiscaray.commissionbackend.services.LobbyService
 import me.john.amiscaray.commissionbackend.services.SessionIdService
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.core.env.Environment
 import org.springframework.messaging.converter.MappingJackson2MessageConverter
-import org.springframework.messaging.simp.stomp.StompCommand
 import org.springframework.messaging.simp.stomp.StompHeaders
-import org.springframework.messaging.simp.stomp.StompSession
 import org.springframework.messaging.simp.stomp.StompSessionHandlerAdapter
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.util.MimeType
@@ -42,7 +36,7 @@ internal class LobbyControllerIT {
     private var port: Int? = null
     private lateinit var stompClient: WebSocketStompClient
     private lateinit var endpoint: String
-    private val result: CompletableFuture<LobbyStatus> = CompletableFuture()
+    private var result: CompletableFuture<LobbyStatus> = CompletableFuture()
 
     private val lobbyReceiveEndpoint = "/game-status/lobby"
     private val lobbySendEndpoint = "/game/lobby"
@@ -54,7 +48,7 @@ internal class LobbyControllerIT {
 
     private var logger: Logger = LoggerFactory.getLogger(LobbyControllerIT::class.java)
 
-    private lateinit var roomCode: String
+    private lateinit var sampleRoomCode: String
     private var sampleGameId = GameIdentity(-1, "", "fake uuid", "Bobbert", "", "")
     private val settings = GameSettings(3, 60, 5)
 
@@ -68,8 +62,15 @@ internal class LobbyControllerIT {
             listOf(WebSocketTransport(StandardWebSocketClient()))
         ))
         stompClient.messageConverter = MappingJackson2MessageConverter()
-        roomCode = lobbyService.registerRoom(settings)
-        sampleGameId = lobbyService.createGameId(roomCode, sampleGameId)
+        sampleRoomCode = lobbyService.registerRoom(settings)
+        sampleGameId = lobbyService.createGameId(sampleRoomCode, sampleGameId)
+
+    }
+
+    @AfterEach
+    fun resetFuture(){
+
+        result = CompletableFuture()
 
     }
 
@@ -96,10 +97,15 @@ internal class LobbyControllerIT {
     @DisplayName("When sending message to room that does not exist, send kick player")
     fun test1(){
 
-        val session = stompClient.connect(endpoint, object: StompSessionHandlerAdapter() {  })
-            .get(1, TimeUnit.SECONDS)
+        val response = sendConnectMessageTo("FAKE")
 
-        val roomCode = "FAKE"
+        assert(response.statusType == LobbyStatus.LobbyStatusType.KICK_PLAYER)
+
+    }
+
+    private fun sendConnectMessageTo(roomCode: String): LobbyStatus {
+        val session = stompClient.connect(endpoint, object : StompSessionHandlerAdapter() {})
+            .get(1, TimeUnit.SECONDS)
 
         session.subscribe("$lobbyReceiveEndpoint/$roomCode", getStompFrameHandler())
 
@@ -107,19 +113,28 @@ internal class LobbyControllerIT {
 
         stompHeaders.destination = "$lobbySendEndpoint/$roomCode"
         stompHeaders.set("token", sampleGameId.token)
-        stompHeaders.contentType = MimeType.valueOf("application/json");
+        stompHeaders.contentType = MimeType.valueOf("application/json")
 
-        session.send(stompHeaders, LobbyStatus(
-            statusType = LobbyStatus.LobbyStatusType.CONNECT,
-            subject = sampleGameId.id,
-            host = sampleGameId.id,
-            participants = mutableListOf(),
-            settings = settings
-        ))
+        session.send(
+            stompHeaders, LobbyStatus(
+                statusType = LobbyStatus.LobbyStatusType.CONNECT,
+                subject = sampleGameId.id,
+                host = sampleGameId.id,
+                participants = mutableListOf(),
+                settings = settings
+            )
+        )
 
-        val response = result.get(10, TimeUnit.SECONDS)
+        return result.get(1, TimeUnit.SECONDS)
+    }
 
-        assert(response.statusType == LobbyStatus.LobbyStatusType.KICK_PLAYER)
+    @Test
+    @DisplayName("Expect host id to be the id of the first player who joined")
+    fun test2(){
+
+        val response = sendConnectMessageTo(sampleRoomCode)
+
+        assert(response.host == sampleGameId.id)
 
     }
 

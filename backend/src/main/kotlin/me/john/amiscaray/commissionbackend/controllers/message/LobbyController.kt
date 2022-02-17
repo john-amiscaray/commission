@@ -28,7 +28,7 @@ class LobbyController(private val lobbyService: LobbyService, private val jwt: J
 
         }
 
-        val host = lobbyService.getRoomsConfigurations()[code]!!.host
+        var host = lobbyService.getRoomsConfigurations()[code]!!.host
 
         val expectedSender = if(status.statusType == LobbyStatus.LobbyStatusType.KICK_PLAYER){
             host
@@ -68,6 +68,7 @@ class LobbyController(private val lobbyService: LobbyService, private val jwt: J
 
                     lobbyService.getRoomsConfigurations()[code]!!.host = status.subject
                     status.host = status.subject
+                    host = status.host
 
                 }
 
