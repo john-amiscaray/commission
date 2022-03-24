@@ -21,7 +21,7 @@ class LobbyController(private val lobbyService: LobbyService, private val jwt: J
 
         logger.info("[MESSAGE(${status.statusType}) from ${status.subject} with token: $token]")
         // If the room does not exist, send a message back to tell the player's client to leave
-        if(!lobbyService.roomExists(code)){
+        if(!lobbyService.roomExists(code) || !lobbyService.userIsInRoom(code, status.subject)){
 
             status.statusType = LobbyStatus.LobbyStatusType.KICK_PLAYER
             return status
@@ -37,7 +37,7 @@ class LobbyController(private val lobbyService: LobbyService, private val jwt: J
         }
 
         if(!jwt.verifyJWTForTransaction(token, expectedSender, code)){
-            throw BadCredentialsException()
+            throw BadCredentialsException(expectedSender)
         }
 
         // Get the game settings from the room to sync with the player
@@ -53,17 +53,15 @@ class LobbyController(private val lobbyService: LobbyService, private val jwt: J
 
         if(status.statusType == LobbyStatus.LobbyStatusType.CONNECT){
 
-            lobbyService.getRoomsConfigurations()[code]!!.getParticipantsReadyMap()[status.subject] = false
-            participants.add(status.subject)
 
             if(participants.size > settings.players){
 
                 status.statusType = LobbyStatus.LobbyStatusType.KICK_PLAYER
-                participants.removeIf { it != status.subject }
-                lobbyService.removeParticipant(code, status.subject)
 
             }else{
 
+                lobbyService.getRoomsConfigurations()[code]!!.getParticipantsReadyMap()[status.subject] = false
+                participants.add(status.subject)
                 if(participants.size == 1){
 
                     lobbyService.getRoomsConfigurations()[code]!!.host = status.subject

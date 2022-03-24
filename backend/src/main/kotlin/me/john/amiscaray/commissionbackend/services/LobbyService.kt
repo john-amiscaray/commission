@@ -97,6 +97,16 @@ class LobbyService(private val jwt: JWTService, private val sessionIdService: Se
 
     }
 
+    fun userIsInRoom(roomCode: String, subject: Long): Boolean{
+
+        if(!roomConfigurationsMap.containsKey(roomCode)){
+            throw RoomNotFoundException(roomCode)
+        }
+
+        return roomConfigurationsMap[roomCode]!!.participantsInfo.containsKey(subject);
+
+    }
+
     @Throws(RoomNotFoundException::class, UserNotFoundException::class)
     fun getUserDetails(roomCode: String, subject: Long): GameIdentity{
 
