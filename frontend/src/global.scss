@@ -98,7 +98,6 @@ ion-card-title{
 .game-message-content, .game-message-content p{
 
   font-family: 'Varela', sans-serif;
-  color: black;
   font-size: 1em;
 
 }
@@ -107,8 +106,13 @@ ion-card-title{
 
   font-size: 1.6em;
   font-weight: bold;
-  color: black;
   display: block;
   margin-top: 30px;
+
+}
+
+body.dark-mode{
+
+  color: white;
 
 }

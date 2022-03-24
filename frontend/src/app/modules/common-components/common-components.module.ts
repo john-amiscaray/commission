@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {LoadComponent} from "./load/load.component";
 import {IonicModule} from "@ionic/angular";
+import {DarkModeToggleComponent} from "./dark-mode-toggle/dark-mode-toggle.component";
 
 
 
 @NgModule({
-  declarations: [LoadComponent],
+  declarations: [LoadComponent, DarkModeToggleComponent],
   exports: [
-    LoadComponent
+    LoadComponent,
+    DarkModeToggleComponent
   ],
   imports: [
     CommonModule,

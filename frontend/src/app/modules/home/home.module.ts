@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import {GamePageModule} from "../game/game.module";
+import {CommonComponentsModule} from "../common-components/common-components.module";
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import {GamePageModule} from "../game/game.module";
         FormsModule,
         IonicModule,
         HomePageRoutingModule,
-        GamePageModule
+        GamePageModule,
+        CommonComponentsModule
     ],
   declarations: [HomePage]
 })
