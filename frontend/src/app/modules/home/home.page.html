@@ -9,7 +9,8 @@
 
   <img id="app-background" src="assets/images/background.png" alt="background">
 
-  <img src="../../../assets/images/logo.svg" alt="logo" id="logo">
+  <img [src]="(darkModeService.darkMode$ | async) ? 'assets/images/actual logo dark.svg' : 'assets/images/logo.svg'"
+       alt="logo" id="logo">
 
   <svg viewBox="0 0 899 1034" fill="none" xmlns="http://www.w3.org/2000/svg" id="canvas" class="ion-align-self-center">
     <style>

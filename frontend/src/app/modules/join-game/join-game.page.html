@@ -9,7 +9,9 @@
   <img id="app-background" src="assets/images/background.png" alt="background">
   <div id="content-wrapper">
 
-    <img *ngIf="!loadingGame" id="page-logo" src="assets/images/RoomCode.svg" alt="enter a room code">
+    <img *ngIf="!loadingGame" id="page-logo"
+         [src]="(darkModeService.darkMode$ | async) ? 'assets/images/RoomCode dark.svg' : 'assets/images/RoomCode.svg'"
+         alt="enter a room code">
 
     <ion-grid *ngIf="!loadingGame">
       <ion-row>

@@ -13,15 +13,7 @@ export class DarkModeToggleComponent implements OnInit {
 
   constructor(private darkModeService: DarkModeService) { }
 
-  ngOnInit() {
-
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      this.darkModeService.enable();
-    }else{
-      this.darkModeService.disable();
-    }
-
-  }
+  ngOnInit() {  }
 
   onClick(): void {
     this.darkModeService.toggle();

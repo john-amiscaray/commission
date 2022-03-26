@@ -14,7 +14,8 @@ ion-grid{
   border-width: thin;
   border-style: solid;
   border-radius: 3px;
-  box-shadow: 1px 2px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 2px 0 rgba(0, 0, 0, 0.2);
+  background-color: white;
 
 }
 
@@ -22,12 +23,6 @@ ion-grid{
 
   display: block;
   margin: 0 auto;
-
-}
-
-#join-game{
-
-  width: 100%;
 
 }
 

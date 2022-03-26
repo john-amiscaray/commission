@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
 import {GameMessageService} from "../../services/game-message.service";
 import {ProfilePictureService} from "../../services/profile-picture.service";
 import {GameMessageDetails} from "../../dtos/GameMessageDetails";
+import {DarkModeService} from "angular-dark-mode";
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomePage implements OnInit{
   gameMessageTypes: Array<GameMessageDetails>
 
   constructor(public auth: AuthService, public game: GameService,
-              public router: Router, public msg: GameMessageService) {}
+              public router: Router, public msg: GameMessageService, public darkModeService: DarkModeService) {}
 
   ngOnInit(){
 

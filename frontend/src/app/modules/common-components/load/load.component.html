@@ -1,6 +1,7 @@
 <div id="container">
   <div id="content">
-    <img id="zee" alt="random bee BEEcause why not" src="assets/images/Zee.png">
+    <img id="zee" alt="mascot" [src]="(darkModeService.darkMode$ | async) ? 'assets/images/zee dark.png':
+    'assets/images/Zee.png'">
     <div id="bottom-content">
       <h1>Loading</h1>
       <ion-spinner color="dark" name="dots"></ion-spinner>

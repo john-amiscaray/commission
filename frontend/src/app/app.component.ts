@@ -7,6 +7,7 @@ import { Platform } from '@ionic/angular';
 import {ToastService} from "./services/toast.service";
 import {GameService} from "./services/game.service";
 import {HttpClient} from "@angular/common/http";
+import {DarkModeService} from "angular-dark-mode";
 
 const { App, BackgroundTask } = Plugins;
 
@@ -19,9 +20,16 @@ export class AppComponent implements OnInit{
 
   constructor(public auth: AuthService, public lobby: LobbyService, private game: GameService,
               public router: Router, private platform: Platform,
-              private toast: ToastService) {}
+              private toast: ToastService, private darkModeService: DarkModeService) {}
 
   ngOnInit() {
+
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      this.darkModeService.enable();
+    }else{
+      this.darkModeService.disable();
+    }
+
     if(this.platform.is('mobile') && !this.platform.is('mobileweb')){
       let self = this;
       App.addListener('appStateChange', state => {

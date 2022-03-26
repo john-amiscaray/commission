@@ -5,6 +5,7 @@ import {AuthService} from "../../services/auth.service";
 import {ToastService} from "../../services/toast.service";
 import {HTTP_STATUS} from "../../constants/Constants";
 import {ServerResponse} from "../../dtos/ServerResponse";
+import {DarkModeService} from "angular-dark-mode";
 
 @Component({
   selector: 'app-join-game',
@@ -15,7 +16,7 @@ export class JoinGamePage {
 
   loadingGame: boolean = false;
 
-  constructor(private lobby: LobbyService, private router: Router,
+  constructor(private lobby: LobbyService, private router: Router, public darkModeService: DarkModeService,
               private auth: AuthService, private toast: ToastService) { }
 
   ionViewDidEnter(){
