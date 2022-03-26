@@ -18,6 +18,7 @@ import {GameClockComponent} from "./game-clock/game-clock.component";
 import {GameMessageComponent} from "./game-message/game-message.component";
 import {GamePauseComponent} from "./game-message/game-pause/game-pause.component";
 import {PalletColorComponent} from "./pallet-color/pallet-color.component";
+import {CommonComponentsModule} from "../common-components/common-components.module";
 
 @NgModule({
     imports: [
@@ -25,7 +26,8 @@ import {PalletColorComponent} from "./pallet-color/pallet-color.component";
         FormsModule,
         IonicModule,
         GamePageRoutingModule,
-        ProfilePageModule
+        ProfilePageModule,
+        CommonComponentsModule
     ],
     exports: [
         GameMessageComponent

@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-menu-button slot="start"></ion-menu-button>
+    <app-dark-mode-toggle></app-dark-mode-toggle>
     <div id="game-toolbar-content">
       <app-game-clock [pauseEvent]="pauseEvent" [startEvent]="startEvent" [timePerRound]="game.settings.seconds"></app-game-clock>
       <h3>{{roundNumber + 1}}/{{game.settings.rounds}}</h3>

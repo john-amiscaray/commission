@@ -9,13 +9,15 @@ import { ProfilePageRoutingModule } from './profile-routing.module';
 import { ProfilePage } from './profile.page';
 import {ProfilePictureSelectComponent} from "./profile-picture-select/profile-picture-select.component";
 import {ProfileNameSelectComponent} from "./profile-name-select/profile-name-select.component";
+import {CommonComponentsModule} from "../common-components/common-components.module";
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-        ProfilePageRoutingModule
+        ProfilePageRoutingModule,
+        CommonComponentsModule
     ],
     declarations: [ProfilePage, ProfilePictureSelectComponent, ProfileNameSelectComponent]
 })
