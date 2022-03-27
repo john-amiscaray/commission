@@ -101,9 +101,6 @@ ion-card-title{
 body.dark-mode{
 
   color: white;
-  ion-content::before{
-    opacity: 1;
-  }
 
 }
 
@@ -128,6 +125,23 @@ ion-router-outlet{
     background-image: url("assets/images/background.png");
     background-repeat: repeat;
     background-size: 30vw 30vw;
+
+  }
+
+}
+
+body.dark-mode{
+
+  ion-router-outlet{
+
+
+    ion-content::before{
+
+      background-image: url("assets/images/background light.png");
+      opacity: 0.2;
+
+    }
+
 
   }
 
