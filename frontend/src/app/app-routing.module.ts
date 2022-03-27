@@ -32,10 +32,6 @@ const routes: Routes = [
     loadChildren: () => import('./modules/join-game/join-game.module').then( m => m.JoinGamePageModule)
   },
   {
-    path: 'test',
-    loadChildren: () => import('./modules/test/test.module').then( m => m.TestPageModule)
-  },
-  {
     path: 'error',
     loadChildren: () => import('./modules/error/error.module').then( m => m.ErrorPageModule)
   }

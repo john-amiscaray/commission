@@ -40,19 +40,6 @@ ion-content{
   --background: none;
   overflow-x: auto;
 
-  #app-background{
-
-    opacity: 0.3;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #E0E0E0;
-    z-index: -10;
-
-  }
-
 }
 
 .error-text{
@@ -114,11 +101,49 @@ ion-card-title{
 body.dark-mode{
 
   color: white;
+  ion-content::before{
+    opacity: 1;
+  }
 
 }
 
 body.light-mode{
 
   background-color: white;
+
+}
+
+ion-router-outlet{
+
+  ion-content::before{
+
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    background-image: url("assets/images/background.png");
+    background-repeat: repeat;
+    background-size: 30vw 30vw;
+
+  }
+
+}
+
+ion-toolbar{
+
+  display: flex;
+  flex-direction: row;
+
+  app-dark-mode-toggle{
+
+    display: block;
+    width: 30px;
+    margin-left: auto;
+
+  }
 
 }

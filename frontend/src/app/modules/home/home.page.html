@@ -7,8 +7,6 @@
 
 <ion-content>
 
-  <img id="app-background" src="assets/images/background.png" alt="background">
-
   <img [src]="(darkModeService.darkMode$ | async) ? 'assets/images/actual logo dark.svg' : 'assets/images/logo.svg'"
        alt="logo" id="logo">
 
