@@ -22,6 +22,19 @@ jobs:
       - name: Test with maven
         working-directory: 'backend'
         run: mvn verify
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_SECRET }}
+          working-directory: 'backend'
+          directory: ./coverage/reports/
+          env_vars: OS
+          fail_ci_if_error: true
+          files: /home/runner/work/backend/backend/target/site/jacoco/jacoco.xml
+          flags: unittests
+          name: codecov-umbrella
+          path_to_write_report: ./coverage/codecov_report.txt
+          verbose: true
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
