@@ -10,11 +10,12 @@ import {GameJudgeActionType} from "../../dtos/GameJudgeAction";
 import {GameMessageService} from "../../services/game-message.service";
 import {GameService} from "../../services/game.service";
 import {ToastService} from "../../services/toast.service";
-import {Subject} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {GameMessageDetails} from "../../dtos/GameMessageDetails";
 import {fadeAnimation, fallInAnimation, fallOutAnimation} from "./game-animations";
 import {UserLobbyStatus} from "../../dtos/UserLobbyStatus";
 import {ComponentWithSplashIntro} from "../../component-interfaces/component-with-splash-intro";
+import {DarkModeService} from "angular-dark-mode";
 
 @Component({
   selector: 'app-game',
@@ -57,9 +58,10 @@ export class GamePage extends ComponentWithSplashIntro implements AfterViewInit,
   messageShouldShow: boolean = false;
 
   private savedMessage: GameMessageDetails = null;
+  darkMode$: Observable<boolean> = this.darkModeService.darkMode$;
 
   constructor(public router: Router, private modal: GameMessageService, private toast: ToastService,
-              public auth: AuthService,
+              public auth: AuthService, private darkModeService: DarkModeService,
               public game: GameService, public route: ActivatedRoute) {
     super();
   }

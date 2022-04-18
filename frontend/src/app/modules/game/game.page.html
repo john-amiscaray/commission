@@ -19,7 +19,7 @@
       <div id="center-screen">
         <div class="arrow-wrapper" id="left-arrow-wrapper">
           <svg id="left-arrow" (click)="goToPreviousCanvas()" width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11.415 2.115L9.29999 0L0.299988 9L9.29999 18L11.415 15.885L4.54499 9L11.415 2.115Z" fill="black"/>
+            <path d="M11.415 2.115L9.29999 0L0.299988 9L9.29999 18L11.415 15.885L4.54499 9L11.415 2.115Z" [style.fill]="(darkMode$ | async) ? 'white': 'black'"/>
           </svg>
         </div>
         <div id="active-canvas-wrapper">
@@ -33,7 +33,7 @@
         </div>
         <div class="arrow-wrapper" id="right-arrow-wrapper">
           <svg id="right-arrow" (click)="goToNextCanvas()" width="13" height="18" viewBox="0 0 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3.02998 0L0.914978 2.115L7.78498 9L0.914978 15.885L3.02998 18L12.03 9L3.02998 0Z" fill="black"/>
+            <path d="M3.02998 0L0.914978 2.115L7.78498 9L0.914978 15.885L3.02998 18L12.03 9L3.02998 0Z" [style.fill]="(darkMode$ | async) ? 'white': 'black'"/>
           </svg>
         </div>
       </div>
