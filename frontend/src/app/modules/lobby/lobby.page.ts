@@ -104,22 +104,24 @@ export class LobbyPage extends ComponentWithSplashIntro implements OnInit{
 
   ionViewDidEnter(){
 
-    try{
-      if(!this.lobby.connectedToLobby()){
-        console.log("Trying to restore the game");
-        this.participants = new Map<number, UserLobbyStatus>();
-        this.lobby.tryRestoreGameOrLeave((res) => {
-          console.log(`The new game id is: ${JSON.stringify(res)}`);
+    setTimeout(() => {
+      try{
+        if(!this.lobby.connectedToLobby()){
+          console.log("Trying to restore the game");
+          this.participants = new Map<number, UserLobbyStatus>();
+          this.lobby.tryRestoreGameOrLeave((res) => {
+            console.log(`The new game id is: ${JSON.stringify(res)}`);
+            this.lobbyInit();
+          });
+        }else{
           this.lobbyInit();
-        });
-      }else{
-        this.lobbyInit();
+        }
+        this.loadingLobby = false;
+      }catch (e){
+        console.log(e);
+        this.toast.customToastMessage('failed to join lobby, please try again');
       }
-      this.loadingLobby = false;
-    }catch (e){
-      console.log(e);
-      this.toast.customToastMessage('failed to join lobby, please try again');
-    }
+    }, 3000);
 
   }
 
